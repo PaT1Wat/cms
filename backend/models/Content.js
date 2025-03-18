@@ -18,12 +18,13 @@ const Content = sequelize.define('Content', {
     allowNull: false
   },
   tags: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     get() {
-      return this.getDataValue('tags').split(',');
+      const rawValue = this.getDataValue('tags');
+      return rawValue ? rawValue.split(',') : [];
     },
     set(val) {
-      this.setDataValue('tags', val.join(','));
+      this.setDataValue('tags', Array.isArray(val) ? val.join(',') : '');
     }
   },
   status: {

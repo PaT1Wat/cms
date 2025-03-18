@@ -1,0 +1,1 @@
+"# final"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin git@github.com:PaT1Wat/final.gitgit push -u origin main

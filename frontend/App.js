@@ -4,17 +4,17 @@ import { Provider } from 'react-redux';
 import store from './store';
 import PrivateRoute from './src/components/routing/PrivateRoute';
 import AdminRoute from './src/components/routing/AdminRoute';
-import Navbar from './components/layout/Navbar';
-import Landing from './components/layout/Landing';
+import Navbar from './src/components/layout/Navbar';
+import Landing from './src/components/layout/Landing';
 import Login from './src/components/auth/Login';
-import Register from './components/auth/Register';
-import Dashboard from './components/dashboard/Dashboard';
-import ContentList from './components/content/ContentList';
+import Register from './src/components/auth/Register';
+import Dashboard from './src/components/dashboard/Dashboard';
+import ContentList from './src/components/content/ContentList';
 import ContentForm from './src/components/content/ContentForm';
-import ContentEdit from './components/content/ContentEdit';
-import MediaList from './components/media/MediaList';
+import ContentEdit from './src/components/content/ContentEdit';
+import MediaList from './src/components/media/MediaList';
 import UserManagement from './src/components/admin/UserManagement';
-import NotFound from './components/layout/NotFound';
+import NotFound from './src/components/layout/NotFound';
 
 const App = () => {
   return (

@@ -1,6 +1,4 @@
-const { Content, User } = require('../models');
-
-const createContent = async (req, res) => {
+export const createContent = async (req, res) => {
   try {
     // เฉพาะผู้ดูแลระบบและบรรณาธิการเท่านั้นที่สามารถสร้างเนื้อหาได้
     if (!['administrator', 'editor'].includes(req.user.role)) {
@@ -24,7 +22,7 @@ const createContent = async (req, res) => {
   }
 };
 
-const updateContent = async (req, res) => {
+export const updateContent = async (req, res) => {
   try {
     const contentId = req.params.id;
     const { title, content, category, tags, status } = req.body;
@@ -59,7 +57,7 @@ const updateContent = async (req, res) => {
   }
 };
 
-const deleteContent = async (req, res) => {
+export const deleteContent = async (req, res) => {
   try {
     const contentId = req.params.id;
     
@@ -81,10 +79,4 @@ const deleteContent = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
-};
-
-module.exports = {
-  createContent,
-  updateContent,
-  deleteContent
 };

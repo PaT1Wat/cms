@@ -1,7 +1,7 @@
-const sequelize = require('../config/database');
-const User = require('./User');
-const Content = require('./Content');
-const Media = require('./Media');
+import sequelize from '../config/database.js';
+import User from './User.js';
+import Content from './Content.js';
+import Media from './Media.js';
 
 // Define relationships
 User.hasMany(Content, { foreignKey: 'authorId' });

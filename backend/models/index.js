@@ -20,10 +20,4 @@ const syncDatabase = async () => {
   }
 };
 
-module.exports = {
-  sequelize,
-  User,
-  Content,
-  Media,
-  syncDatabase
-};
+export { sequelize, User, Content, Media, syncDatabase };

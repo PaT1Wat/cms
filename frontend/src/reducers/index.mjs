@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+const { combineReducers } = require('redux');
 import auth from './auth';
 import content from './content';
 import media from './media';

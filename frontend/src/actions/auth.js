@@ -17,9 +17,8 @@ export const loadUser = () => async dispatch => {
   }
 
   try {
-    // เพิ่ม endpoint เพื่อรับข้อมูลผู้ใช้จากโทเค็น
-    const res = await axios.get('/api/auth/me');
-    
+    const res = await axios.get('/api/auth/user'); // Endpoint สำหรับโหลดข้อมูลผู้ใช้
+
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -42,7 +41,7 @@ export const login = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('/api/auth/login', body, config);
+    const res = await axios.post('/api/auth/login', body, config); // Endpoint สำหรับเข้าสู่ระบบ
 
     dispatch({
       type: LOGIN_SUCCESS,

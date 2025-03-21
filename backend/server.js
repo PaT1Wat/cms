@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { syncDatabase } from './models/index.js';
+import { syncDatabase } from './models/index.js'; // เพิ่มการนำเข้า syncDatabase
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import contentRoutes from './routes/content.js';
@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 // เชื่อมต่อกับฐานข้อมูลโดยใช้ Sequelize
-syncDatabase();
+syncDatabase(); // เรียกใช้ฟังก์ชัน syncDatabase
 
 // Middleware
 app.use(cors());

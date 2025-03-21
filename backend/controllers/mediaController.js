@@ -1,6 +1,6 @@
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
 
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
@@ -20,7 +20,7 @@ const upload = multer({
     const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = allowedTypes.test(file.mimetype);
-    
+
     if (extname && mimetype) {
       return cb(null, true);
     } else {

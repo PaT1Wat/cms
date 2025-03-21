@@ -33,4 +33,4 @@ const Content = sequelize.define('Content', {
   }
 });
 
-module.exports = Content;
+module.exports = Content; 

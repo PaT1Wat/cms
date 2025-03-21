@@ -1,7 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const { syncDatabase } = require('./models/index');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { syncDatabase } from './models/index.js';
+
+dotenv.config();
 
 const app = express();
 

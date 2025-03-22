@@ -25,5 +25,17 @@ app.use('/api/users', userRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/media', mediaRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 5001; // เปลี่ยนจาก 5000 เป็น 5001
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// จัดการข้อผิดพลาดเมื่อพอร์ตถูกใช้งาน
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use. Please use a different port.`);
+    process.exit(1); // ออกจากโปรแกรม
+  } else {
+    console.error('Server error:', err);
+  }
+});

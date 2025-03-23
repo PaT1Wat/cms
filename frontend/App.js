@@ -18,23 +18,14 @@ import NotFound from './src/components/layout/NotFound';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          <PrivateRoute exact path="/content" component={ContentList} />
-          <PrivateRoute exact path="/content/new" component={ContentForm} />
-          <PrivateRoute exact path="/content/edit/:id" component={ContentEdit} />
-          <PrivateRoute exact path="/media" component={MediaList} />
-          <AdminRoute exact path="/admin/users" component={UserManagement} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
-    </Provider>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 };
 

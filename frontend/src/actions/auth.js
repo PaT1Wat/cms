@@ -31,28 +31,21 @@ export const loadUser = () => async dispatch => {
 };
 
 // เข้าสู่ระบบ
-export const login = (email, password) => async dispatch => {
+export const login = async (email, password) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('/api/auth/login', body, config); // Endpoint สำหรับเข้าสู่ระบบ
-
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
-    });
-
-    dispatch(loadUser());
+    const res = await axios.post('/api/auth/login', body, config); // ใช้ Proxy
+    return res.data;
   } catch (err) {
-    dispatch({
-      type: LOGIN_FAIL
-    });
+    console.error(err);
+    throw err;
   }
 };
 

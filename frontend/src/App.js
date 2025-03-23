@@ -18,14 +18,9 @@ import NotFound from './components/layout/NotFound';
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
+    <div>
+      <h1>Welcome to Vite + React App</h1>
+    </div>
   );
 };
 

@@ -1,19 +1,21 @@
 // frontend/src/components/dashboard/Dashboard.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getMyContent } from '../../actions/content';
 import { getMyMedia } from '../../actions/media';
 import ContentSummary from './ContentSummary';
 import MediaSummary from './MediaSummary';
+import { AuthContext } from '../../context/AuthContext';
 
 const Dashboard = ({ 
-  auth: { user },
   content: { myContent },
   media: { myMedia },
   getMyContent,
   getMyMedia
 }) => {
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     getMyContent();
     getMyMedia();
@@ -84,7 +86,6 @@ const Dashboard = ({
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
   content: state.content,
   media: state.media
 });

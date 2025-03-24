@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node backend/server.js",
     "dev": "vite",
-    "client": "cd frontend && npm run dev", 
+    "client": "cd frontend && npm run dev",
     "dev:all": "concurrently \"npm run dev\" \"npm run client\"",
     "build": "vite build",
     "preview": "vite preview"

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { login } from '../../actions/auth';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import { Redirect } from 'react-router-dom';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = () => {
+  const { login, isAuthenticated } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -11,11 +11,11 @@ const Login = ({ login, isAuthenticated }) => {
 
   const { email, password } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    await login(email, password); // เรียกฟังก์ชัน login จาก Context
   };
 
   if (isAuthenticated) {
@@ -24,10 +24,10 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <div className="container">
-      <h1>Sign In</h1>
+      <h1>เข้าสู่ระบบ</h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label>Email</label>
+          <label>อีเมล</label>
           <input
             type="email"
             name="email"
@@ -37,7 +37,7 @@ const Login = ({ login, isAuthenticated }) => {
           />
         </div>
         <div className="form-group">
-          <label>Password</label>
+          <label>รหัสผ่าน</label>
           <input
             type="password"
             name="password"
@@ -46,14 +46,10 @@ const Login = ({ login, isAuthenticated }) => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary">เข้าสู่ระบบ</button>
       </form>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login;

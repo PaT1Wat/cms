@@ -1,25 +1,10 @@
 // frontend/src/components/dashboard/Dashboard.js
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { getMyContent } from '../../actions/content';
-import { getMyMedia } from '../../actions/media';
-import ContentSummary from './ContentSummary';
-import MediaSummary from './MediaSummary';
 import { AuthContext } from '../../context/AuthContext';
 
-const Dashboard = ({ 
-  content: { myContent },
-  media: { myMedia },
-  getMyContent,
-  getMyMedia
-}) => {
+const Dashboard = () => {
   const { user } = useContext(AuthContext);
-
-  useEffect(() => {
-    getMyContent();
-    getMyMedia();
-  }, [getMyContent, getMyMedia]);
 
   return (
     <div className="container">
@@ -36,61 +21,8 @@ const Dashboard = ({
           <i className="fas fa-upload"></i> อัปโหลดสื่อ
         </Link>
       </div>
-
-      <div className="dashboard-grid">
-        <div className="dashboard-card">
-          <h2 className="text-primary">เนื้อหาล่าสุดของฉัน</h2>
-          {myContent && myContent.length > 0 ? (
-            <ContentSummary content={myContent.slice(0, 5)} />
-          ) : (
-            <p>คุณยังไม่มีเนื้อหา</p>
-          )}
-          <Link to="/content" className="btn btn-light">
-            ดูทั้งหมด
-          </Link>
-        </div>
-
-        <div className="dashboard-card">
-          <h2 className="text-primary">สื่อล่าสุดของฉัน</h2>
-          {myMedia && myMedia.length > 0 ? (
-            <MediaSummary media={myMedia.slice(0, 5)} />
-          ) : (
-            <p>คุณยังไม่มีสื่อ</p>
-          )}
-          <Link to="/media" className="btn btn-light">
-            ดูทั้งหมด
-          </Link>
-        </div>
-
-        {user && (user.role === 'administrator' || user.role === 'editor') && (
-          <div className="dashboard-card">
-            <h2 className="text-primary">การจัดการระบบ</h2>
-            <div className="admin-links">
-              {user.role === 'administrator' && (
-                <Link to="/admin/users" className="btn btn-dark">
-                  <i className="fas fa-users-cog"></i> จัดการผู้ใช้
-                </Link>
-              )}
-              <Link to="/content" className="btn btn-dark">
-                <i className="fas fa-file-alt"></i> จัดการเนื้อหา
-              </Link>
-              <Link to="/media" className="btn btn-dark">
-                <i className="fas fa-images"></i> จัดการสื่อ
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  content: state.content,
-  media: state.media
-});
-
-export default connect(
-  mapStateToProps,
-  { getMyContent, getMyMedia }
-)(Dashboard);
+export default Dashboard;
